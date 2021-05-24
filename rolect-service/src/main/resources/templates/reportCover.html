@@ -1,0 +1,49 @@
+<div th:fragment="reportCover" xmlns:th="http://www.w3.org/1999/xhtml">
+
+
+    <img class="logo" alt="img not found" th:src="@{classpath:static/images/rolect.png}"/>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <p th:utext=" 'Submitted on ' + ${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}" class="grey align-right" style="font-size:23px; line-height: 50%;  ">
+
+    </p>
+    <p class="grey align-right" style="font-size:13px;  line-height:50%;">
+        EOSC RoP Legal and Ethics Compliance
+    </p>
+    <br/>
+
+
+    <div th:if="${user == null}">
+        <p class="align-right grey-bold" style="font-size:21px;line-height: 20%;">GUEST USER</p>
+    </div>
+
+    <div th:unless="${user == null}">
+        <p class="align-right grey-bold" style="font-size:21px;line-height: 20%;">FIRST NAME:</p>
+        <p th:text="${user.getFirstName()}" class="grey align-right" style="font-size:21px;"></p>
+        <br/>
+
+        <p class="align-right grey-bold" style="font-size:21px;line-height: 20%;">LAST NAME:</p>
+        <p th:text="${user.getLastName()}" class="grey align-right" style="font-size:21px;">Nick Papadopoulos</p>
+        <br/>
+
+
+        <p class="align-right grey-bold" style="font-size:21px;line-height: 20%;">EMAIL:</p>
+        <p th:text="${user.getEmail()}" class="grey align-right" style="font-size:21px;"> </p>
+        <br/>
+    </div>
+
+    <br/>
+
+    <div class="row">
+        <div class="column">
+            <img class="footer-img" width="120" alt="img not found" th:src="@{classpath:static/images/athena.png}"/>
+        </div>
+        <div class="column">
+            <img class="footer-img" width="80" alt="img not found" th:src="@{classpath:static/images/ni4os.png}"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+body {
+    font-family: "Poppins", serif;
+    font-weight: 100;
+    color: #3F4254;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    font-weight: 500;
+}
+
+.reportHeader{
+    border-style: groove;
+    border-color: #01AA6C;
+    background-color: whitesmoke;
+}
+
+th, td{
+    text-align: left;
+    vertical-align:center
+}
+
+tr:nth-child(odd){background-color: #f2f2f2;}
+
+
+.reportSection th,td{
+    width: 450px;
+    height: 50px;
+}
+
+.reportSection td{
+    padding-left: .2cm;
+}
+
+.indicator{
+    width: 20px;
+    height: auto;
+    padding-right: 1cm;
+    padding-left: 1cm;
+}
+
+.sectionHeader th{
+    text-align:center;
+    color:white;
+    background-color: #01AA6C;
+    font-size: large;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+
+th{
+    /*font-weight: 450;*/
+}
+
+.reportSection{
+    margin-top: 1.4cm;
+    page-break-after: always;
+}
+
+#link{
+    font-style: italic;
+}
+
+.page-break {
+    page-break-after: always;
+}

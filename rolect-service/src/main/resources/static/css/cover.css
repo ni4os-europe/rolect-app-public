@@ -1,0 +1,36 @@
+.logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.grey {
+    color: gray;
+}
+
+.grey-bold {
+    color: gray;
+    font-weight: bold;
+}
+
+.column {
+    float: right;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    bottom: 0;
+    margin-top: 6cm;
+    padding-left: 5cm;
+    margin-left: 5cm;
+}
+
+.footer-img{
+    display: inline-block;
+}

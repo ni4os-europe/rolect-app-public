@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PDF Report Template</title>
+    <link media="all" th:href="@{classpath:static/css/report.css}" rel="stylesheet"  />
+    <link media="all" th:href="@{classpath:static/css/cover.css}" rel="stylesheet"  />
+</head>
+
+<body>
+
+<!--Cover Page-->
+<div class="page-break" th:include="reportCover::reportCover"></div>
+
+<!--Disclaimer-->
+<div class="page-break">
+
+    <h2 style="text-align: center; color: #01AA6C">
+        <span>Disclaimer</span>
+    </h2>
+    <hr style="border: 1px solid #01AA6C;"/>
+
+    <div style="text-align: justify;margin-top: 1.5cm">
+        This document does not constitute legal advice and should not be construed as such. If you need legal advice in relation to the release of your resources, please seek advise from a qualified lawyer in your jurisdiction.
+        NI4OS-Europe project and Athena Research Center are not liable for any information, data or other input added to the services by the users.
+    </div>
+
+</div>
+
+<!--How to read the report-->
+<div class="page-break how-to">
+
+    <h2 style="text-align: center; color: #01AA6C">
+        <span>Levels of Importance when assessing compliance with RoP</span>
+    </h2>
+    <hr style="border: 1px solid #01AA6C;"/>
+
+
+    <div style="margin-top: 1cm;margin-bottom: 1cm">
+        This tool provides a set of questions that are categorized into three levels of importance (high, medium and low) marked with the symbols below. The questions have been classified according to the priorities set out in EOSC RoP. The symbols serve as indicators of compliance that help resource providers to assess what information or omission of information is most important for verifying adherence with RoP; the assessment result reflects the respective degree of compliance with RoP, namely :
+    </div>
+
+    <div style="margin-bottom: .5cm">
+        <img style="display: inline-block;vertical-align:middle" class="indicator" alt="img not found" th:src="@{classpath:static/images/marks/red.png}"/>
+        <h4 style="display: inline"> High Importance: </h4> Critical information that reflects the basic principles of RoP
+        <br></br>
+    </div>
+
+    <div style="margin-bottom: .5cm">
+        <img style="display: inline-block;vertical-align:middle" class="indicator" alt="img not found" th:src="@{classpath:static/images/marks/yellow.png}"/>
+        <h4 style="display: inline"> Medium  Importance: </h4> Information that is consistent with the EOSC RoP
+        <br></br>
+    </div>
+
+
+    <div style="margin-bottom: .5cm">
+        <img style="display: inline-block;vertical-align:middle" class="indicator" alt="img not found" th:src="@{classpath:static/images/marks/green.png}"/>
+        <h4 style="display: inline"> Low  Importance: </h4> Information with a relatively low impact on the assessment result
+        <br></br>
+    </div>
+
+
+</div>
+
+
+<!--Report Title-->
+<!--<hr style="border: 1px solid #01AA6C"/>-->
+<div class="reportHeader">
+    <h2 style="text-align: center; color: #01AA6C">
+        <span> EOSC RoP Legal &amp; Ethics Compliance Report </span>
+    </h2>
+</div>
+<!--<hr style="border: 1px solid #01AA6C"/>-->
+
+<!--Obligatory Questions-->
+<div class="page-break">
+
+    <div class="reportSection">
+
+        <div style="text-align: justify;padding-bottom: 1cm">
+            Following questions form the minimum requirements for EOSC RoP compliance and are therefore obligatory. Negative or no answers at all, indicate non-compliance.
+        </div>
+
+        <table style="padding-bottom: 1cm">
+            <thead>
+            <tr class="sectionHeader">
+                <th colspan="2">
+                    <h3>
+                        Obligatory Questions
+                        <img class="logo" alt="img not found" th:src="@{classpath:static/images/test.png}"/>
+                    </h3>
+                </th>
+            </tr>
+            </thead>
+
+            <th:block th:each="section : ${data.sections}" >
+                <tr th:each="question : ${section.questions}" th:if="${question.priority == 'obligatory'}" >
+                    <th th:text="${question.name}" />
+                    <td>
+                        <div th:if="${question.response == ''}">
+                            <span>-</span>
+                        </div>
+                        <div th:unless="${question.response == ''}">
+                            <span th:if="${question.response == true}">Yes</span>
+                            <span th:unless="${question.response == true}" th:text="${question.response}"></span>
+                        </div>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+
+        <br></br>
+        <div th:if="${allObligatoryFieldsFilled == true}" style="">
+            <i>Based on your answers above, <div style="font-weight: bold">you fulfil the basic EOSC Rules of Participation</div></i>
+        </div>
+        <div th:if="${allObligatoryFieldsFilled == false}">
+            <i>Based on your answers above, <b>you are not EOSC RoP compliant</b> </i>
+        </div>
+
+    </div>
+</div>
+
+
+<!--Report Section-->
+<div class="reportSection" th:each="section : ${data.sections}" th:if="!${section.hidden}">
+    <table>
+        <thead>
+            <tr class="sectionHeader">
+                <th colspan="2">
+                    <h3 th:text="${section.name}"/>
+                </th>
+            </tr>
+        </thead>
+        <tr th:each="question : ${section.questions}" th:unless="${question.priority == 'obligatory'}" th:if="!${question.hidden}">
+            <th th:text="${question.name}" />
+            <td>
+                <div th:if="${question.response == ''}">
+                    <span>-</span>
+                    <span th:block th:switch="${question.priority}">
+                        <img class="indicator" th:case="'high'" alt="img not found" th:src="@{classpath:static/images/marks/red.png}"/>
+                        <img class="indicator" th:case="'medium'" alt="img not found" th:src="@{classpath:static/images/marks/yellow.png}"/>
+                        <img class="indicator" th:case="'low'" alt="img not found" th:src="@{classpath:static/images/marks/green.png}"/>
+                    </span>
+                </div>
+
+                <!--non-empty response-->
+                <div th:unless="${question.response == ''}">
+
+                    <!--boolean response-->
+                    <span th:if="${question.response == true}">Yes</span>
+
+
+                    <!--text response-->
+                    <div th:unless="${question.response == true}" >
+
+                        <!--url response-->
+                        <div th:if="${#strings.contains(question.name, 'URL')}">
+                            <a th:href="@{${question.response}}"><span th:text="${question.response}"></span></a>
+                        </div>
+
+                        <!--simple text response-->
+                        <span th:unless="${#strings.contains(question.name, 'URL')}" th:text="${question.response}"></span>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
