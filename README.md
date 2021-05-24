@@ -1,1 +1,3 @@
-# rolect-app-public
+# RoLECT Tool
+
+RoLECT - EOSC RoP Legal & Ethics Compliance Tool - has been designed with view to assist prospective resource providers in verifying adherence to the Rules of Participation (RoP) during the onboarding process of resources to the EOSC ecosystem focusing on the Legal and Ethics Requirements. The tool provides a guided procedure sequence, where the prospective providers are invited to insert all available information so that a potential EOSC resource (service/dataset/other) can be assessed against the current RoP Guidelines. The scope of the assessment focuses on the most basic obligatory requirements. Nevertheless, further obligatory and common requirements may be assessed in specific cases when the nature of the prospective EOSC service requires so.
