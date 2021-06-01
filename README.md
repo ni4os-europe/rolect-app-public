@@ -4,7 +4,7 @@ RoLECT - EOSC RoP Legal & Ethics Compliance Tool - has been designed with view t
 
 ## Licensing
 
-LCT is being developed by ATHENA RC (https://www.athena-innovation.gr/) as part of the project NI4OS-Europe (https://ni4os.eu/).
+RoLECT is being developed by ATHENA RC (https://www.athena-innovation.gr/) as part of the project NI4OS-Europe (https://ni4os.eu/).
 
 The source code in this repository is licensed under the terms of **EUPL-1.2** (the "License").
 
