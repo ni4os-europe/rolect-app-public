@@ -25,17 +25,14 @@ tr:nth-child(odd){background-color: #f2f2f2;}
 .reportSection th,td{
     width: 450px;
     height: 50px;
-}
-
-.reportSection td{
     padding-left: .2cm;
 }
 
 .indicator{
     width: 20px;
     height: auto;
-    padding-right: 1cm;
-    padding-left: 1cm;
+    /*padding-right: 1cm;*/
+    /*padding-left: 1cm;*/
 }
 
 .sectionHeader th{

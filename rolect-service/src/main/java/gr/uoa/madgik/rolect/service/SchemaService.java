@@ -1,9 +1,9 @@
 package gr.uoa.madgik.rolect.service;
 
-import gr.uoa.madgik.rolect.model.form.Question;
-import gr.uoa.madgik.rolect.model.form.Schema;
-import gr.uoa.madgik.rolect.model.form.Section;
-import gr.uoa.madgik.rolect.model.form.Vocabulary;
+import gr.uoa.madgik.rolect.model.schema.Question;
+import gr.uoa.madgik.rolect.model.schema.Schema;
+import gr.uoa.madgik.rolect.model.schema.Section;
+import gr.uoa.madgik.rolect.model.schema.Vocabulary;
 import gr.uoa.madgik.rolect.repository.SchemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

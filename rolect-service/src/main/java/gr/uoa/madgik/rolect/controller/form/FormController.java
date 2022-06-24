@@ -1,22 +1,19 @@
 package gr.uoa.madgik.rolect.controller.form;
 
 
-import gr.uoa.madgik.rolect.model.form.Question;
-import gr.uoa.madgik.rolect.model.form.Schema;
-import gr.uoa.madgik.rolect.model.form.Section;
-import gr.uoa.madgik.rolect.model.form.Vocabulary;
-import gr.uoa.madgik.rolect.pdf.PdfService;
+import gr.uoa.madgik.rolect.model.schema.Question;
+import gr.uoa.madgik.rolect.model.schema.Schema;
+import gr.uoa.madgik.rolect.model.schema.Section;
+import gr.uoa.madgik.rolect.model.schema.Vocabulary;
 import gr.uoa.madgik.rolect.service.SchemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
-@CrossOrigin(origins = "*")
+@RestController
 public class FormController {
 
     @Autowired

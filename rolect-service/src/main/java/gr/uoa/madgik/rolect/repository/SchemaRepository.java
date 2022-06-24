@@ -1,6 +1,6 @@
 package gr.uoa.madgik.rolect.repository;
 
-import gr.uoa.madgik.rolect.model.form.Schema;
+import gr.uoa.madgik.rolect.model.schema.Schema;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,4 @@
-package gr.uoa.madgik.rolect.model.response;
-
-import gr.uoa.madgik.rolect.model.form.Section;
+package gr.uoa.madgik.rolect.model.submitted_form;
 
 import java.util.List;
 
@@ -27,8 +25,14 @@ public class FormResponse {
 
         for (SectionResponse section : this.sections) {
             for (QuestionResponse question : section.questions) {
-                if(question.priority.equals("obligatory") && question.response.equals("") || question.response.equals("No"))
-                    return false;
+                if (question.priority.equals("obligatory")){
+                    if (question.response == null)
+                        return false;
+                    if (question.response.equals(""))
+                        return false;
+                    if (question.response.equals("No"))
+                        return false;
+                }
             }
         }
         return true;

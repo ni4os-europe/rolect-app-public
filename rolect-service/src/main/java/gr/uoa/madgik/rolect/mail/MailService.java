@@ -1,8 +1,10 @@
 package gr.uoa.madgik.rolect.mail;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import gr.uoa.madgik.rolect.model.misc.ContactForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -21,27 +23,30 @@ public class MailService {
     @Autowired
     private Configuration config;
 
-    public void sendMail(Map<String, Object> payload){
+    @Autowired
+    private MailConfig mailConfig;
 
-        final String from = "noreply.ni4os@gmail.com";
-        final String to = "info.ni4os@gmail.com";
-        final String username = "noreply.ni4os@gmail.com";
-        final String password = "qZ335npT";
+    public void sendMail(ContactForm payload){
+
+        final String from = mailConfig.getUsername();
+        final String to = mailConfig.getReceiver();
+        final String username = mailConfig.getUsername();
+        final String password = mailConfig.getPassword();
 
         // Get system properties
         Properties props = new Properties();
 
         // enable authentication
-        props.put("mail.smtp.auth",  "true");
+        props.put("mail.smtp.auth",  mailConfig.getMailSmtpAuth().equals("true"));
 
         // enable STARTTLS
-        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.enable", mailConfig.getMailSmtpStartTls().equals("true"));
 
         // Setup mail server
-        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.host", mailConfig.getHost());
 
         // SSL Port
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.port", mailConfig.getPort());
 
         // SSL Factory
 //        props.put("mail.smtp.socketFactory.class",
@@ -71,9 +76,20 @@ public class MailService {
                     MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
                     StandardCharsets.UTF_8.name());
 
+
             // construct email template
-            Template t =  config.getTemplate("contact-email.ftl");
-            String html = FreeMarkerTemplateUtils.processTemplateIntoString(t,payload);
+//            System.out.println();
+//            System.out.println(payload.getEmail());
+//            System.out.println(payload.getFullName());
+//            System.out.println(payload.getMessage());
+//            System.out.println(payload.getSubject());
+//            System.out.println();
+
+            config.setClassForTemplateLoading(this.getClass(),"/templates/");
+            Template t =  config.getTemplate("contact.ftlh");
+            ObjectMapper m = new ObjectMapper();
+            String html = FreeMarkerTemplateUtils.processTemplateIntoString(t,m.convertValue(payload, Map.class));
+
 
             // sender
             helper.setFrom(from);
@@ -82,7 +98,7 @@ public class MailService {
             helper.setTo(to);
 
             // subject
-            helper.setSubject(payload.get("subject").toString());
+            helper.setSubject(payload.getSubject());
 
             // message
             helper.setText(html,true);

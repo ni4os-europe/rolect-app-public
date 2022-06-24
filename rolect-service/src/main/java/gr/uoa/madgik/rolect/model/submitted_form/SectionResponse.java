@@ -1,4 +1,4 @@
-package gr.uoa.madgik.rolect.model.response;
+package gr.uoa.madgik.rolect.model.submitted_form;
 
 import java.util.List;
 

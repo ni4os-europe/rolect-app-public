@@ -1,4 +1,4 @@
-package gr.uoa.madgik.rolect.model.form;
+package gr.uoa.madgik.rolect.model.schema;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;

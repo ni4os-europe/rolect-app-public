@@ -1,21 +1,24 @@
-package gr.uoa.madgik.rolect.model.form;
+package gr.uoa.madgik.rolect.model.schema;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
-public class Section {
+public class Question {
+
 
     @Field("id")
     String id;
     String name;
     String description;
-    String detailedDescription;
+    String sectionId;
     Integer order;
     Boolean mandatory;
+    String priority;
+    String responseType;
+    String vocabularyId;
     String dependingQuestionId;
     List<String> dependingAnswerIds;
-
 
     public String getId() {
         return id;
@@ -37,16 +40,16 @@ public class Section {
         return description;
     }
 
-    public String getDetailedDescription() {
-        return detailedDescription;
-    }
-
-    public void setDetailedDescription(String detailedDescription) {
-        this.detailedDescription = detailedDescription;
-    }
-
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(String sectionId) {
+        this.sectionId = sectionId;
     }
 
     public Integer getOrder() {
@@ -63,6 +66,30 @@ public class Section {
 
     public void setMandatory(Boolean mandatory) {
         this.mandatory = mandatory;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getResponseType() {
+        return responseType;
+    }
+
+    public void setResponseType(String responseType) {
+        this.responseType = responseType;
+    }
+
+    public String getVocabularyId() {
+        return vocabularyId;
+    }
+
+    public void setVocabularyId(String vocabularyId) {
+        this.vocabularyId = vocabularyId;
     }
 
     public String getDependingQuestionId() {
